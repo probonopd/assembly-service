@@ -34,8 +34,6 @@ script:
   - cp appdir/usr/share/app-info/icons/flatpak/128x128/"${ID}.png" appdir/
   - cp appdir/usr/share/app-info/icons/flatpak/128x128/"${ID}.png" appdir/usr/share/icons/hicolor/128x128/apps
   - sed -i -e 's|/usr||g' $(find appdir/ -type f -name loaders.cache | head -n 1) || true # FIXME in go-appimagetool
-  - sed -i -e 's|/etc|/xxx|g' appdir/usr/lib64/ld-linux-x86-64.so.2 || true # FIXME in go-appimagetool; --inhibit-cache is not working
-  - sed -i -e 's|/etc|/xxx|g' appdir/lib64/ld-linux-x86-64.so.2 || true # FIXME in go-appimagetool; --inhibit-cache is not working
   - sudo chmod +x appdir/usr/lib64/ld-linux-x86-64.so.2 appdir/lib64/ld-linux-x86-64.so.2 || true # FIXME in go-appimagetool
   - RUNTIME=$(LANG=en flatpak info "${ID}" --user | grep "Runtime:" | cut -d ":" -f 2 | cut -d " " -f 2) # e.g., org.gnome.Platform/x86_64/3.36
   - cp -r "${HOME}/.local/share/flatpak/runtime/${RUNTIME}/active/files/share/glib-2.0/schemas" appdir/usr/share/glib-2.0/runtime-schemas || true
