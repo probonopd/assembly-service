@@ -41,6 +41,7 @@ script:
   - cp -r "${HOME}/.local/share/flatpak/runtime/${RUNTIME}/active/files/share/glib-2.0/schemas" appdir/usr/share/glib-2.0/runtime-schemas || true
   - find appdir/ -type f -exec sed -i -e 's|/app/share|././/share|g' {} \; # Patch away hardcoded /app/share
   - touch appdir/dummy.ui # Force cd usr/ before AppImage is run
+  - find $HOME -type f -name libqxcb.so || true # FIXME; for debugging VLC
   - find appdir/
   - export VERSION=$(LANG=en flatpak info "${ID}" --user | grep "Version:" | cut -d ":" -f 2 | cut -d " " -f 2)
   - ./appimagetool-*-x86_64.AppImage appdir/
