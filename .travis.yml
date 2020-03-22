@@ -30,6 +30,7 @@ script:
   - mkdir -p appdir/usr/share/icons/hicolor/128x128/apps
   - cp appdir/usr/share/app-info/icons/flatpak/128x128/"${ID}.png" appdir/
   - cp appdir/usr/share/app-info/icons/flatpak/128x128/"${ID}.png" appdir/usr/share/icons/hicolor/128x128/apps
+  - sed -i -e 's|/usr||g' $(find appdir/ -type f -name loaders.cache | head -n 1) || true # FIXME in go-appimagetool
   - find appdir/
   - export VERSION=$(LANG=en flatpak info "${ID}" --user | grep "Version:" | cut -d ":" -f 2 | cut -d " " -f 2)
   - ./appimagetool-*-x86_64.AppImage appdir/
