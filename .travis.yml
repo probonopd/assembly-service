@@ -19,7 +19,7 @@ script:
   - flatpak install -v --noninteractive --user "${ID}"
   - mkdir -p appdir
   - cp -r "${HOME}/.local/share/flatpak/app/${ID}/current/active/files" ./appdir/usr/
-  - flatpak run --user --command="./appimagetool-463-x86_64.AppImage -s deploy appdir/usr/share/applications/${ID}"
+  - flatpak run --user --command="./appimagetool-463-x86_64.AppImage -s deploy appdir/usr/share/applications/${ID}" "${ID}"
   # On Ubuntu Live ISO, getting: bwrap: Can't make symlink at /var/run: File exists
   - VERSION=1 ./appimagetool-463-x86_64.AppImage appdir/
   
