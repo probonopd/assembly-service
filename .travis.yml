@@ -27,7 +27,7 @@ script:
   # Work around non-1.0 desktop files
   - sed -i -e 's|DBusActivatable|X-DBusActivatable|g' appdir/"${ID}".desktop
   - sed -i -e 's|Keywords|X-Keywords|g' appdir/"${ID}".desktop
-  - cp "${HOME}/.local/share/flatpak/app/share/app-info/icons/flatpak/128x128/${ID}.png" appdir/
+  - cp $(find "${HOME}.local/share/flatpak/" | grep "${ID}" | grep 128x128 | head -n 1) appdir/ # FIXME
   - find appdir/
   - export VERSION=$(LANG=en flatpak info "${ID}" --user | sed 's/^[[:space:]]*//' | grep -i ^Version: | cut -c 10-)
   - ./appimagetool-*-x86_64.AppImage appdir/
