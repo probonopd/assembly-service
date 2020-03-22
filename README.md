@@ -2,7 +2,7 @@
 
 ![](https://cdn-images-1.medium.com/max/800/1*PRi2K9TJEa6hO0I92P-p6A.png)
 
-Experimental assembly Service for Flatpak, builds Flatpak into AppImage
+Experimental Assembly Service for Flatpak, converts applications distributed via Flatpak into AppImages
 
 Still in the (very) early stages. Playground. Who wants to help?
 
