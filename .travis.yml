@@ -39,7 +39,7 @@ script:
   - sudo chmod +x appdir/usr/lib64/ld-linux-x86-64.so.2 appdir/lib64/ld-linux-x86-64.so.2 || true # FIXME in go-appimagetool
   - RUNTIME=$(LANG=en flatpak info "${ID}" --user | grep "Runtime:" | cut -d ":" -f 2 | cut -d " " -f 2) # e.g., org.gnome.Platform/x86_64/3.36
   - cp -r "${HOME}/.local/share/flatpak/runtime/${RUNTIME}/active/files/share/glib-2.0/schemas" appdir/usr/share/glib-2.0/runtime-schemas || true
-  - find appdir/ -type f -exec sed -i -e 's|/app|././|g' {} \; # Patch away hardcoded /app
+  - find appdir/ -type f -exec sed -i -e 's|/app/share|././/share|g' {} \; # Patch away hardcoded /app/share
   - touch appdir/dummy.ui # Force cd usr/ before AppImage is run
   - find appdir/
   - export VERSION=$(LANG=en flatpak info "${ID}" --user | grep "Version:" | cut -d ":" -f 2 | cut -d " " -f 2)
