@@ -29,7 +29,8 @@ script:
   - sed -i -e 's|Keywords|X-Keywords|g' appdir/"${ID}".desktop
   - cp "${HOME}/.local/share/flatpak/app/share/app-info/icons/flatpak/128x128/${ID}.png" appdir/
   - find appdir/
-  - VERSION=1 ./appimagetool-*-x86_64.AppImage appdir/
+  - export VERSION=$(LANG=en flatpak info "${ID}" --user | sed 's/^[[:space:]]*//' | grep -i ^Version: | cut -c 10-)
+  - ./appimagetool-*-x86_64.AppImage appdir/
   
 branches:
   except:
