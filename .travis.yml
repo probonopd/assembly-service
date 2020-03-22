@@ -8,8 +8,8 @@ env:
     - ID=org.gnome.gedit
     - ID=com.github.babluboy.bookworm
     - ID=com.github.calo001.fondo
-    - ID=com.github.maoschanz.drawing
-    - ID=com.github.themix_project.Oomox
+    # ID=com.github.maoschanz.drawing
+    - ID=org.videolan.VLC
 
 before_install:
   - sudo add-apt-repository ppa:alexlarsson/flatpak -y
@@ -34,8 +34,10 @@ script:
   - sed -i -e 's|/etc|/xxx|g' appdir/usr/lib64/ld-linux-x86-64.so.2 || true # FIXME in go-appimagetool; --inhibit-cache is not working
   - sed -i -e 's|/etc|/xxx|g' appdir/lib64/ld-linux-x86-64.so.2 || true # FIXME in go-appimagetool; --inhibit-cache is not working
   - sudo chmod +x appdir/usr/lib64/ld-linux-x86-64.so.2 appdir/lib64/ld-linux-x86-64.so.2 || true # FIXME in go-appimagetool
-  - touch appdir/dummy.ui # Force cd usr/ before AppImage is run
+  - RUNTIME=$(LANG=en flatpak info "${ID}" --user | grep "Runtime:" | cut -d ":" -f 2 | cut -d " " -f 2) # e.g., org.gnome.Platform/x86_64/3.36
+  - cp "${HOME}/.local/share/flatpak/runtime/${RUNTIME}/active/files/share/glib-2.0/schemas" appdir/usr/share/glib-2.0/runtime-schemas || true
   - find appdir/ -type f -exec sed -i -e 's|/app|././|g' {} \; # Patch away hardcoded /app
+  - touch appdir/dummy.ui # Force cd usr/ before AppImage is run
   - find appdir/
   - export VERSION=$(LANG=en flatpak info "${ID}" --user | grep "Version:" | cut -d ":" -f 2 | cut -d " " -f 2)
   - ./appimagetool-*-x86_64.AppImage appdir/
