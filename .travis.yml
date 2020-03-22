@@ -10,7 +10,7 @@ env:
 before_install:
   - sudo add-apt-repository ppa:alexlarsson/flatpak -y
   - sudo apt-get update -q
-  - sudo apt-get -y install flatpak imagemagick curl
+  - sudo apt-get -y install flatpak imagemagick curl binutils
   - wget -c https://github.com/$(wget -q https://github.com/probonopd/go-appimage/releases -O - | grep "appimagetool-.*-x86_64.AppImage" | head -n 1 | cut -d '"' -f 2)
   - chmod +x ./*.AppImage
   
