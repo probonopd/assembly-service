@@ -20,8 +20,8 @@ script:
   - mkdir -p appdir
   - cp -r "${HOME}/.local/share/flatpak/app/${ID}/current/active/files" ./appdir/usr/
   - which strings # FIXME: Is there a way to expose binaries from the host system to an application executed through  flatpak run --user --command=...?
-  - cp $(which strings) .
-  - flatpak run --filesystem=host --user --command=$(readlink -f ./appimagetool-*-x86_64.AppImage) "${ID}" -s deploy appdir/usr/share/applications/${ID} --appimage-extract-and-run
+  # cp $(which strings) .
+  - flatpak run --filesystem=host --user --command=$(readlink -f ./appimagetool-*-x86_64.AppImage) "${ID}" -s deploy $(readlink -f appdir/usr/share/applications/"${ID}") --appimage-extract-and-run
   # On Ubuntu Live ISO, getting: bwrap: Can't make symlink at /var/run: File exists
   - VERSION=1 ./appimagetool-463-x86_64.AppImage appdir/
   
