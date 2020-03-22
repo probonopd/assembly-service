@@ -10,9 +10,15 @@ env:
     - ID=com.github.calo001.fondo
     # ID=com.github.maoschanz.drawing
     - ID=org.videolan.VLC
-    - ID=org.baedert.corebird
+    # ID=org.baedert.corebird
     - ID=io.github.GnomeMpv
     - ID=com.uploadedlobster.peek
+    - ID=org.octave.Octave
+    - ID=com.abisource.AbiWord
+    - ID=com.leinardi.gwe
+    - ID=net.meijn.onvifviewer
+    - ID=com.discordapp.Discord
+    - ID=com.slack.Slack
     
 before_install:
   - sudo add-apt-repository ppa:alexlarsson/flatpak -y
