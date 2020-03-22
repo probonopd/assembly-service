@@ -15,6 +15,7 @@ before_install:
   - chmod +x ./*.AppImage
   
 script:
+  - flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   - flatpak install -v --noninteractive --user "${ID}"
   - mkdir -p appdir
   - cp -r ".local/share/flatpak/app/${ID}/current/active/files" ./appdir/usr/
