@@ -36,7 +36,6 @@ script:
   - sudo chmod +x appdir/usr/lib64/ld-linux-x86-64.so.2 appdir/lib64/ld-linux-x86-64.so.2 || true # FIXME in go-appimagetool
   - touch appdir/dummy.ui # Force cd usr/ before AppImage is run
   - find appdir/ -type f -exec sed -i -e 's|/app|././|g' {} \; # Patch away hardcoded /app
-  - find 
   - find appdir/
   - export VERSION=$(LANG=en flatpak info "${ID}" --user | grep "Version:" | cut -d ":" -f 2 | cut -d " " -f 2)
   - ./appimagetool-*-x86_64.AppImage appdir/
