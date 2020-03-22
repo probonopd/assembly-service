@@ -29,7 +29,7 @@ script:
   - sed -i -e 's|Keywords|X-Keywords|g' appdir/"${ID}".desktop
   - cp $(find "${HOME}.local/share/flatpak/" | grep "${ID}" | grep 128x128 | head -n 1) appdir/ # FIXME
   - find appdir/
-  - export VERSION=$(LANG=en flatpak info "${ID}" --user | sed 's/^[[:space:]]*//' | grep -i ^Version: | cut -c 10-)
+  - export VERSION=$(LANG=en flatpak info "${ID}" --user | grep "Version:" | cut -d ":" -f 2 | cut -d " " -f 2)
   - ./appimagetool-*-x86_64.AppImage appdir/
   
 branches:
