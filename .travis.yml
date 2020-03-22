@@ -27,7 +27,6 @@ script:
   # Work around non-1.0 desktop files
   - sed -i -e 's|DBusActivatable|X-DBusActivatable|g' appdir/"${ID}".desktop
   - sed -i -e 's|Keywords|X-Keywords|g' appdir/"${ID}".desktop
-  - cp $(find "${HOME}/.local/share/flatpak/" | grep "${ID}" | grep 128x128 | head -n 1) appdir/ # FIXME
   - mkdir -p appdir/usr/share/icons/hicolor/128x128/apps
   - cp appdir/usr/share/app-info/icons/flatpak/128x128/"${ID}.png" appdir/
   - cp appdir/usr/share/app-info/icons/flatpak/128x128/"${ID}.png" appdir/usr/share/icons/hicolor/128x128/apps
