@@ -3,7 +3,6 @@ dist: xenial
 
 env:
   global:
-    - DISPLAY=:99
     - ARCH=x86_64
   jobs:
     - ID=org.gnome.gedit
