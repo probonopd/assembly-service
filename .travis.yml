@@ -29,7 +29,7 @@ script:
   - find ./appdir/usr/share/applications -type f -exec sed -i -e 's|/app/bin/||g' {} \; || true # Want no paths in Exec=
   - find ./appdir/usr/share/applications -type f -exec sed -i -e 's|/usr/bin/||g' {} \; || true # Want no paths in Exec=
   - find ./appdir/usr/share/applications -type f -exec sed -i -e 's|Exec=vlc|Exec=vlc.bin|g' {} \; || true # FIXME
-  - cp /usr/bin/glib-compile-schemas /usr/local/bin . # We need this command to be available inside the "flatpak run" execution; how to do this?
+  - cp /usr/bin/glib-compile-schemas /usr/local/bin/ # We need this command to be available inside the "flatpak run" execution; how to do this?
   - flatpak run --filesystem=host --user --command=$(readlink -f ./appimagetool-*-x86_64.AppImage) "${ID}" -s deploy $(readlink -f appdir/usr/share/applications/"${ID}".desktop) --appimage-extract-and-run # On Ubuntu Live ISO, getting: bwrap: Can't make symlink at /var/run: File exists
   - LD_LIBRARY_PATH='' find $(readlink -f appdir) -type f -exec ldd {} 2>&1 \; | grep '=>' | grep -v $(readlink -f appdir)
   - sed -i -e 's|DBusActivatable|X-DBusActivatable|g' appdir/"${ID}".desktop # FIXME: Work around non-1.0 desktop files
