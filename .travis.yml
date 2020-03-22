@@ -23,7 +23,8 @@ script:
   # cp $(which strings) .
   - flatpak run --filesystem=host --user --command=$(readlink -f ./appimagetool-*-x86_64.AppImage) "${ID}" -s deploy $(readlink -f appdir/usr/share/applications/"${ID}".desktop) --appimage-extract-and-run
   # On Ubuntu Live ISO, getting: bwrap: Can't make symlink at /var/run: File exists
-  - VERSION=1 ./appimagetool-463-x86_64.AppImage appdir/
+  - LD_LIBRARY_PATH='' find $(readlink -f appdir) -type f -exec ldd {} 2>&1 \; | grep '=>' | grep -v $(readlink -f appdir)
+  - VERSION=1 ./appimagetool-*-x86_64.AppImage appdir/
   
 branches:
   except:
