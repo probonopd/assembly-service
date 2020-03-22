@@ -39,7 +39,7 @@ script:
   - flatpak run --filesystem=host --user --command=$(readlink -f ./appimagetool-*-x86_64.AppImage) "${ID}" -s deploy $(readlink -f appdir/usr/share/applications/"${ID}".desktop) --appimage-extract-and-run # On Ubuntu Live ISO, getting: bwrap: Can't make symlink at /var/run: File exists
   - |
     if [ "$?" != "0" ] ; then
-      EXEC=$(cat apdir/*.desktop | grep '^Exec=.*' | cut -d = -f 2 | cut -d " " -f 1)
+      EXEC=$(cat appdir/*.desktop | grep '^Exec=.*' | cut -d = -f 2 | cut -d " " -f 1)
       file "appdir/usr/bin/${EXEC}"
       head -n 1 "appdir/usr/bin/${EXEC}"
       exit 1
